@@ -1,0 +1,14 @@
+qemu-system-i386 -serial mon:stdio -drive file=fs.img,index=1,media=disk,format=raw -drive file=xv6.img,index=0,media=disk,format=raw -smp 2 -m 512 
+xv6...
+cpu1: starting 1
+cpu0: starting 0
+sb: size 1000 nblocks 941 ninodes 200 nlog 30 logstart 2 inodestart 32 bmap start 58
+init: starting sh
+$ nulltest
+pid 3 nulltest: trap 14 err 4 on cpu 1 eip 0x1019 addr 0x0--kill proc
+$ childfailtest
+pid 5 childfailtest: trap 14 err 7 on cpu 1 eip 0x1063 addr 0xb000--kill proc
+$ parentfailtest
+pid 6 parentfailtest: trap 14 err 7 on cpu 1 eip 0x1089 addr 0xb000--kill proc
+$ systest
+$ 
